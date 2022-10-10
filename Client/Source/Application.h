@@ -7,7 +7,8 @@ namespace CLIENT
 	class Application
 	{
 	private:
-		UniquePtr<Window> mWindow;
+		//Window* mWindow;
+		SharedPtr<Window> mWindow;
 	public:
 		bool Create();
 		void Run();

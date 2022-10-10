@@ -20,7 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\Application.cpp" />
+    <ClCompile Include="..\Source\DirectX12\CommandList.cpp" />
+    <ClCompile Include="..\Source\DirectX12\CommandQueue.cpp" />
+    <ClCompile Include="..\Source\DirectX12\DirectX12.cpp" />
+    <ClCompile Include="..\Source\DirectX12\Fence.cpp" />
+    <ClCompile Include="..\Source\DirectX12\PipelineState.cpp" />
+    <ClCompile Include="..\Source\DirectX12\RootSignature.cpp" />
     <ClCompile Include="..\Source\Global\GlobalInstance.cpp" />
+    <ClCompile Include="..\Source\Global\TimerManager.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Math\Matrix.cpp" />
     <ClCompile Include="..\Source\Math\Vector.cpp" />
@@ -29,12 +36,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Application.h" />
-    <ClInclude Include="..\Source\Common\d3d12shader.h" />
-    <ClInclude Include="..\Source\Common\d3dx12.h" />
     <ClInclude Include="..\Source\Common\Define.h" />
     <ClInclude Include="..\Source\Core.h" />
+    <ClInclude Include="..\Source\DirectX12\CommandList.h" />
+    <ClInclude Include="..\Source\DirectX12\CommandQueue.h" />
+    <ClInclude Include="..\Source\DirectX12\d3d12shader.h" />
+    <ClInclude Include="..\Source\DirectX12\d3dx12.h" />
+    <ClInclude Include="..\Source\DirectX12\DirectX12.h" />
+    <ClInclude Include="..\Source\DirectX12\dxcapi.h" />
+    <ClInclude Include="..\Source\DirectX12\Fence.h" />
+    <ClInclude Include="..\Source\DirectX12\PipelineState.h" />
+    <ClInclude Include="..\Source\DirectX12\RootSignature.h" />
     <ClInclude Include="..\Source\Global\Log.h" />
     <ClInclude Include="..\Source\Global\GlobalInstance.h" />
+    <ClInclude Include="..\Source\Global\TimerManager.h" />
     <ClInclude Include="..\Source\Math\Matrix.h" />
     <ClInclude Include="..\Source\Math\Vector.h" />
     <ClInclude Include="..\Source\pch.h" />
@@ -121,7 +136,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>../Source;../../ThirdParty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -156,7 +171,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>../Source;../../ThirdParty;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Application.h"
+#include "DirectX12/DirectX12.h"
 
 namespace CLIENT
 {
@@ -8,12 +9,11 @@ namespace CLIENT
 		GlobalInstance::Create();
 		{
 			Log::Register<Log>();
+			//Window::Register<Window>();
+			//DirectX12::Register<DirectX12>();
 		}
 
-		if (false == (mWindow = CreateUniquePtr<Window>())->Create())
-		{
-			return false;
-		}
+		//mWindow = GlobalInstance::Instance<Window>();
 
 		return true;
 	}
@@ -22,18 +22,18 @@ namespace CLIENT
 	{
 		while (true)
 		{
-			if (false == mWindow->Update())
-			{
-				break;
-			}
+			//if (false == mWindow->Update())
+			//{
+			//	break;
+			//}
 			/* Timer */
-
+			
 			/* Scheduler */
 		}
 	}
 
 	void Application::Destroy()
 	{
-		GlobalInstance::Destroy();
+		GlobalInstance::Release();
 	}
 }

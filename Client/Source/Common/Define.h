@@ -9,8 +9,8 @@
 #include <DirectXColors.h>
 #include <wrl.h>
 #include <d3dcompiler.h>
-#include "d3dx12.h"
-#include "d3d12shader.h"
+#include "DirectX12/d3dx12.h"
+#include "DirectX12/d3d12shader.h"
 
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "d3d12.lib")
@@ -20,6 +20,17 @@
 /* CLIENT */
 #include "Math/Vector.h"
 #include "Math/Matrix.h"
+
+/* Leak Check */
+#ifdef _DEBUG
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#ifndef DBG_NEW
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#define new DBG_NEW
+#endif
+#endif
 
 using namespace Microsoft::WRL;
 

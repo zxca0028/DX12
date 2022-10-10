@@ -13,12 +13,13 @@ namespace CLIENT
 		const wchar_t* Title = nullptr;
 	};
 
-	class Window final
+	class Window final : public ISingleton
 	{
+		friend class DirectX12;
 	private:
-		WindowDesc mWindowDesc;
+		static WindowDesc mWindowDesc;
 	public:
-		bool Create();
+		void Init();
 		bool Update();
 	};
 }

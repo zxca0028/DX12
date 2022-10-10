@@ -16,41 +16,36 @@ namespace CLIENT
 
 			if (true == GlobalInstance::Instance()->IsValid(hashCode))
 			{
-				auto instance = new T(args...);
-				
+				auto instance = CreateSharedPtr<T>(args...);
+
 				GlobalInstance::Instance()->RegisterInstance(hashCode, instance);
+
+				instance->Init();
 			}
 		}
-	protected:
-		virtual void Release() = 0;
 	};
 
 	class GlobalInstance final
 	{
 		friend class ISingleton;
 	private:
-		Dictionary<u64, ISingleton*> mInstances;
-		static GlobalInstance* mInstance;
+		Dictionary<u64, SharedPtr<ISingleton>> mInstances;
+		static UniquePtr<GlobalInstance> mInstance;
 	public:
 		static void Create()
 		{
 			if (nullptr == mInstance)
 			{
-				mInstance = new GlobalInstance();
+				mInstance = CreateUniquePtr<GlobalInstance>();
 			}
 		}
-		static void Destroy()
+	public:
+		static void Release()
 		{
-			if (nullptr != mInstance)
-			{
-				mInstance->ReleaseInstance();
-
-				delete mInstance;
-				mInstance = nullptr;
-			}
+			mInstance->ReleaseInstance();
 		}
 	private:
-		void RegisterInstance(u64 hashCode, ISingleton* instance)
+		void RegisterInstance(u64 hashCode, SharedPtr<ISingleton> instance)
 		{
 			mInstances.emplace(hashCode, instance);
 		}
@@ -58,26 +53,23 @@ namespace CLIENT
 		{
 			for (auto& instance : mInstances)
 			{
-				instance.second->Release();
-
-				delete instance.second;
-				instance.second = nullptr;
+				instance.second.reset();
 			}
 
-			mInstances.clear();
+			mInstance.reset();
 		}
 	public:
 		template <class T>
-		static T* Instance()
+		static SharedPtr<T> Instance()
 		{
-			return static_cast<T*>(mInstance->Find(typeid(T).hash_code()));
+			return std::static_pointer_cast<T>(mInstance->Find(typeid(T).hash_code()));
 		}
 	private:
 		static GlobalInstance* Instance()
 		{
-			return mInstance;
+			return mInstance.get();
 		}
-		ISingleton* Find(u64 hashCode)
+		SharedPtr<ISingleton> Find(u64 hashCode)
 		{
 			return mInstances.find(hashCode)->second;
 		}

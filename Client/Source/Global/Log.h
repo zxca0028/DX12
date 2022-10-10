@@ -6,9 +6,20 @@
 
 namespace CLIENT
 {
+#define LOG_TRACE(...)		::CLIENT::Log::TraceLog   (::CLIENT::Log::GetLogger(), __VA_ARGS__);
+#define LOG_INFO(...)		::CLIENT::Log::InfoLog    (::CLIENT::Log::GetLogger(), __VA_ARGS__);
+#define LOG_WARN(...)		::CLIENT::Log::WarnLog    (::CLIENT::Log::GetLogger(), __VA_ARGS__);
+#define LOG_ERROR(...)		::CLIENT::Log::ErrorLog   (::CLIENT::Log::GetLogger(), __VA_ARGS__);
+#define LOG_CRITICAL(...)	::CLIENT::Log::CriticalLog(::CLIENT::Log::GetLogger(), __VA_ARGS__);
+
 	class Log final : public ISingleton
 	{
 		friend class Application;
+	public:
+		void Init() 
+		{
+			LOG_INFO("Complete to Register Log");
+		}
 	private:
 		SharedPtr<spdlog::logger> mLogger = nullptr;
 	public:
@@ -57,16 +68,5 @@ namespace CLIENT
 		{
 			return std::forward<T>(arg);
 		}
-	protected:
-		virtual void Release() override
-		{
-
-		}
 	};
 }
-
-#define LOG_TRACE(...)		::CLIENT::Log::TraceLog   (::CLIENT::Log::GetLogger(), __VA_ARGS__);
-#define LOG_INFO(...)		::CLIENT::Log::InfoLog    (::CLIENT::Log::GetLogger(), __VA_ARGS__);
-#define LOG_WARN(...)		::CLIENT::Log::WarnLog    (::CLIENT::Log::GetLogger(), __VA_ARGS__);
-#define LOG_ERROR(...)		::CLIENT::Log::ErrorLog   (::CLIENT::Log::GetLogger(), __VA_ARGS__);
-#define LOG_CRITICAL(...)	::CLIENT::Log::CriticalLog(::CLIENT::Log::GetLogger(), __VA_ARGS__);

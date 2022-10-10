@@ -19,7 +19,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Source\pch.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Application.cpp" />
     <ClCompile Include="..\Source\Math\Matrix.cpp">
@@ -34,9 +33,32 @@
     <ClCompile Include="..\Source\Global\GlobalInstance.cpp">
       <Filter>Global</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\DirectX12\CommandList.cpp">
+      <Filter>DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DirectX12\CommandQueue.cpp">
+      <Filter>DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DirectX12\DirectX12.cpp">
+      <Filter>DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DirectX12\Fence.cpp">
+      <Filter>DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DirectX12\PipelineState.cpp">
+      <Filter>DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\DirectX12\RootSignature.cpp">
+      <Filter>DirectX12</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\pch.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Global\TimerManager.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Source\pch.h" />
     <ClInclude Include="..\Source\Application.h" />
     <ClInclude Include="..\Source\Math\Matrix.h">
       <Filter>Math</Filter>
@@ -47,13 +69,6 @@
     <ClInclude Include="..\Source\Common\Define.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Source\Common\d3d12shader.h">
-      <Filter>DirectX12</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Common\d3dx12.h">
-      <Filter>DirectX12</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Core.h" />
     <ClInclude Include="..\Source\Window\Window.h">
       <Filter>Window</Filter>
     </ClInclude>
@@ -61,6 +76,42 @@
       <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Global\Log.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\DirectX12\CommandList.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\DirectX12\CommandQueue.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\DirectX12\d3d12shader.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\DirectX12\d3dx12.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\DirectX12\DirectX12.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\DirectX12\dxcapi.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\DirectX12\Fence.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\DirectX12\PipelineState.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\DirectX12\RootSignature.h">
+      <Filter>DirectX12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Core.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\pch.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Global\TimerManager.h">
       <Filter>Global</Filter>
     </ClInclude>
   </ItemGroup>

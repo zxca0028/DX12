@@ -3,6 +3,8 @@
 
 namespace CLIENT
 {
+	WindowDesc Window::mWindowDesc = {};
+
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
 		switch (msg)
@@ -15,11 +17,11 @@ namespace CLIENT
 		return ::DefWindowProc(hWnd, msg, wParam, lParam);
 	}
 
-	bool CLIENT::Window::Create()
+	void CLIENT::Window::Init()
 	{
 		mWindowDesc.hInst  = GetModuleHandle(NULL);
-		mWindowDesc.Width  = 1920;
-		mWindowDesc.Height = 1080;
+		mWindowDesc.Width  = Width;
+		mWindowDesc.Height = Height;
 		mWindowDesc.Title  = L"Title";
 
 		WNDCLASSEXW wcex = {};
@@ -57,13 +59,13 @@ namespace CLIENT
 
 		if (0 == mWindowDesc.hWnd)
 		{
-			return false;
+			LOG_ERROR("Fail to Register Window");
 		}
 
 		ShowWindow(mWindowDesc.hWnd, SW_NORMAL);
 		UpdateWindow(mWindowDesc.hWnd);
 
-		return true;
+		LOG_INFO("Complete to Register Window");
 	}
 
 	bool Window::Update()

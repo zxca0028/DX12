@@ -3,5 +3,5 @@
 
 namespace CLIENT
 {
-	GlobalInstance* GlobalInstance::mInstance = nullptr;
+	UniquePtr<GlobalInstance> GlobalInstance::mInstance = nullptr;
 }
