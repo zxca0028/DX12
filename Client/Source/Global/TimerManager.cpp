@@ -3,6 +3,11 @@
 
 namespace CLIENT
 {
+	void TimerManager::Init()
+	{
+		LOG_INFO("Complete to Register TimerManager");
+	}
+
 	void TimerManager::Update()
 	{
 	}

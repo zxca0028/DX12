@@ -6,7 +6,7 @@ namespace CLIENT
 {
 	class RootSignature final
 	{
-	private:
+	public:
 		explicit RootSignature();
 		virtual ~RootSignature() = default;
 	public:
@@ -19,6 +19,6 @@ namespace CLIENT
 			return mRootSignature.Get();
 		}
 	public:
-		static RootSignature* Create();
+		static SharedPtr<RootSignature> Create();
 	};
 }

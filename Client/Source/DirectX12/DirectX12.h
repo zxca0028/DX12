@@ -9,12 +9,11 @@ namespace CLIENT
 
 	class DirectX12 final : public ISingleton
 	{
-	public:
-		void Init();
+		friend class ISingleton;
 	public:
 		static IDXGIFactory4* GetDXGIFactory();
 		static ID3D12Device*  GetDevice();
-		static CommandQueue*  GetCommandQueue();
+		static SharedPtr<CommandQueue>  GetCommandQueue();
 	public:
 		static ID3D12Resource* GetBackBuffer();
 		static const u64 GetBackBufferCount();
@@ -27,7 +26,9 @@ namespace CLIENT
 		void Begin();
 		void End();
 		void Present();
+		void Flush();
 	private:
+		void Init();
 		void Resize();
 		void CreateResource();
 		void ScissorRect();

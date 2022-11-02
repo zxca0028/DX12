@@ -1,16 +1,20 @@
 #pragma once
 
 #include "Core.h"
+#include <chrono>
 
 namespace CLIENT
 {
 	class Timer;
 	class TimerManager final : public ISingleton
 	{
+		friend class ISingleton;
 		friend class Application;
-	public:
-		void Update();
 	private:
+		Dictionary<u64, SharedPtr<Timer>> mTimers;
+	private:
+		void Init();
+		void Update();
 		void CreateTimer();
 		void DestroyTimer();
 	};

@@ -33,9 +33,9 @@ namespace CLIENT
 		}
 	}
 
-	Fence* Fence::Create()
+	SharedPtr<Fence> Fence::Create()
 	{
-		auto pInstance = new Fence();
+		auto pInstance = CreateSharedPtr<Fence>();
 	
 		if (nullptr == pInstance)
 		{

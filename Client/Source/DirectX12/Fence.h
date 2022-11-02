@@ -6,7 +6,7 @@ namespace CLIENT
 {
 	class Fence final
 	{
-	private:
+	public:
 		explicit Fence();
 		virtual ~Fence() = default;
 	public:
@@ -28,6 +28,6 @@ namespace CLIENT
 		ComPtr<ID3D12Fence> mFence;
 		u64 mFenceValue;
 	public:
-		static Fence* Create();
+		static SharedPtr<Fence> Create();
 	};
 }

@@ -6,7 +6,7 @@ namespace CLIENT
 {
 	class CommandList final 
 	{
-	private:
+	public:
 		explicit CommandList();
 		virtual ~CommandList() = default;
 	public:
@@ -27,6 +27,6 @@ namespace CLIENT
 			return mCmdAllocator.Get();
 		}
 	public:
-		static CommandList* Create(D3D12_COMMAND_LIST_TYPE type);
+		static SharedPtr<CommandList> Create(D3D12_COMMAND_LIST_TYPE type);
 	};
 }

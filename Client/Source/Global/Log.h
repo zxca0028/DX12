@@ -14,8 +14,9 @@ namespace CLIENT
 
 	class Log final : public ISingleton
 	{
+		friend class ISingleton;
 		friend class Application;
-	public:
+	private:
 		void Init() 
 		{
 			LOG_INFO("Complete to Register Log");

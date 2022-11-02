@@ -44,9 +44,9 @@ namespace CLIENT
 		return S_OK;
 	}
 
-	RootSignature* RootSignature::Create()
+	SharedPtr<RootSignature> RootSignature::Create()
 	{
-		auto pInstance = new RootSignature();
+		auto pInstance = CreateSharedPtr<RootSignature>();
 
 		if (nullptr == pInstance)
 		{

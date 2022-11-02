@@ -28,9 +28,9 @@ namespace CLIENT
         mCmdAllocator->Reset();
     }
 
-    CommandList* CommandList::Create(D3D12_COMMAND_LIST_TYPE type)
+    SharedPtr<CommandList> CommandList::Create(D3D12_COMMAND_LIST_TYPE type)
     {
-        auto pInstance = new CommandList();
+        auto pInstance = CreateSharedPtr<CommandList>();
 
         if (nullptr == pInstance)
         {

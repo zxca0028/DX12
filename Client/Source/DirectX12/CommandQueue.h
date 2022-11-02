@@ -8,7 +8,7 @@ namespace CLIENT
 	class CommandList;
 	class CommandQueue final
 	{
-	private:
+	public:
 		explicit CommandQueue();
 		virtual ~CommandQueue() = default;
 	public:
@@ -22,8 +22,8 @@ namespace CLIENT
 	private:
 		ComPtr<ID3D12CommandQueue> mCmdQueue;
 		vector<u64> mFenceValue;
-		Fence* mFence;
+		SharedPtr<Fence> mFence;
 	public:
-		static CommandQueue* Create(u64 bufferCount, D3D12_COMMAND_LIST_TYPE type);
+		static SharedPtr<CommandQueue> Create(u64 bufferCount, D3D12_COMMAND_LIST_TYPE type);
 	};
 }

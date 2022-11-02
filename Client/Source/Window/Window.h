@@ -15,10 +15,12 @@ namespace CLIENT
 
 	class Window final : public ISingleton
 	{
+		friend class ISingleton;
+		friend class Application;
 		friend class DirectX12;
 	private:
 		static WindowDesc mWindowDesc;
-	public:
+	private:
 		void Init();
 		bool Update();
 	};

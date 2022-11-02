@@ -38,9 +38,9 @@ namespace CLIENT
 		mFence->WaitForFenceValue(mFence->GetValue());
 	}
 
-	CommandQueue* CommandQueue::Create(u64 bufferCount, D3D12_COMMAND_LIST_TYPE type)
+	SharedPtr<CommandQueue> CommandQueue::Create(u64 bufferCount, D3D12_COMMAND_LIST_TYPE type)
 	{
-		auto pInstance = new CommandQueue();
+		auto pInstance = CreateSharedPtr<CommandQueue>();
 
 		if (nullptr == pInstance)
 		{

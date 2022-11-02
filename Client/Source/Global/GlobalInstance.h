@@ -44,25 +44,36 @@ namespace CLIENT
 		{
 			mInstance->ReleaseInstance();
 		}
+		template <class T>
+		static void Destroy()
+		{
+			mInstance->DestroyInstance(typeid(T).hash_code());
+		}
+	private:
+		void ReleaseInstance()
+		{
+			mInstances.clear();
+			mInstance.reset();
+		}
+		void DestroyInstance(u64 hashCode)
+		{
+			mInstances[hashCode].reset();
+		}
 	private:
 		void RegisterInstance(u64 hashCode, SharedPtr<ISingleton> instance)
 		{
 			mInstances.emplace(hashCode, instance);
-		}
-		void ReleaseInstance()
-		{
-			for (auto& instance : mInstances)
-			{
-				instance.second.reset();
-			}
-
-			mInstance.reset();
 		}
 	public:
 		template <class T>
 		static SharedPtr<T> Instance()
 		{
 			return std::static_pointer_cast<T>(mInstance->Find(typeid(T).hash_code()));
+		}
+		template <class T>
+		static bool IsVaild()
+		{
+			return mInstance->Find(typeid(T).hash_code()) != nullptr;
 		}
 	private:
 		static GlobalInstance* Instance()

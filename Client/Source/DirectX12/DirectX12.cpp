@@ -19,10 +19,10 @@ namespace CLIENT
 	static        ComPtr<ID3D12Resource>  gDepthStencilBuffer;
 	static vector<ComPtr<ID3D12Resource>> gBackBuffers;
 
-	static CommandQueue*  gCommandQueue;
-	static CommandList*   gCommandList;
-	static PipelineState* gPipelineState;
-	static RootSignature* gRootSignatrue;
+	static SharedPtr<CommandQueue>  gCommandQueue;
+	static SharedPtr<CommandList>   gCommandList;
+	static SharedPtr<PipelineState> gPipelineState;
+	static SharedPtr<RootSignature> gRootSignatrue;
 
 	static const u32 gBackBufferCount = 2;
 	static		 u32 gBackBufferIndex = 0;
@@ -244,6 +244,22 @@ namespace CLIENT
 		CreateResource();
 		ScissorRect();
 
+		GlobalInstance::Instance<Scheduler>()->ScheduleByFrame(0, 0, 0, SchedulePriority::Graphics_BeginFrame,
+			[&]() -> EScheduleResult
+		{
+			Begin();
+
+			return EScheduleResult::Continue;
+		});
+
+		GlobalInstance::Instance<Scheduler>()->ScheduleByFrame(0, 0, 0, SchedulePriority::Graphics_EndFrame,
+			[&]() -> EScheduleResult
+		{
+			End();
+
+			return EScheduleResult::Continue;
+		});
+
 		LOG_INFO("Complete to Register DirectX12");
 	}
 
@@ -257,7 +273,7 @@ namespace CLIENT
 		return gDevice.Get();
 	}
 
-	CommandQueue* DirectX12::GetCommandQueue()
+	SharedPtr<CommandQueue> DirectX12::GetCommandQueue()
 	{
 		return gCommandQueue;
 	}
@@ -322,6 +338,11 @@ namespace CLIENT
 		gCommandList->Get()->Close();
 		ID3D12CommandList* pCommandList[] = { gCommandList->Get() };
 		gCommandQueue->Get()->ExecuteCommandLists(_countof(pCommandList), pCommandList);
+
+		gCommandQueue->Flush();
+
+		gSwapChain->Present(0, 0);
+		gBackBufferIndex = (gBackBufferIndex + 1) % gBackBufferCount;
 	}
 
 	void DirectX12::Present()
@@ -329,6 +350,11 @@ namespace CLIENT
 		gSwapChain->Present(0, 0);
 		gBackBufferIndex = (gBackBufferIndex + 1) % gBackBufferCount;
 
+		gCommandQueue->Flush();
+	}
+
+	void DirectX12::Flush()
+	{
 		gCommandQueue->Flush();
 	}
 

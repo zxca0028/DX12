@@ -4,3 +4,5 @@
 
 #include "Global/Log.h"
 #include "Global/GlobalInstance.h"
+#include "Global/TimerManager.h"
+#include "Global/Scheduler.h"

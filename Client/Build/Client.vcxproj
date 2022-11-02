@@ -27,6 +27,7 @@
     <ClCompile Include="..\Source\DirectX12\PipelineState.cpp" />
     <ClCompile Include="..\Source\DirectX12\RootSignature.cpp" />
     <ClCompile Include="..\Source\Global\GlobalInstance.cpp" />
+    <ClCompile Include="..\Source\Global\Scheduler.cpp" />
     <ClCompile Include="..\Source\Global\TimerManager.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Math\Matrix.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="..\Source\DirectX12\RootSignature.h" />
     <ClInclude Include="..\Source\Global\Log.h" />
     <ClInclude Include="..\Source\Global\GlobalInstance.h" />
+    <ClInclude Include="..\Source\Global\Scheduler.h" />
     <ClInclude Include="..\Source\Global\TimerManager.h" />
     <ClInclude Include="..\Source\Math\Matrix.h" />
     <ClInclude Include="..\Source\Math\Vector.h" />
