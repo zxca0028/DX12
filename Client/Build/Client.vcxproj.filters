@@ -17,6 +17,9 @@
     <Filter Include="Window">
       <UniqueIdentifier>{224054a5-ed3a-43a0-b4f2-6455650223bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{4ac3697f-a254-4194-a33a-5bcf1308da67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp" />
@@ -59,6 +62,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\Global\Scheduler.cpp">
       <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\System\SystemUI.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +125,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\Global\Scheduler.h">
       <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\System\SystemUI.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

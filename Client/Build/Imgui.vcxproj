@@ -18,6 +18,34 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\ThirdParty\Imgui\ImCurveEdit.cpp" />
+    <ClCompile Include="..\..\ThirdParty\Imgui\ImGradient.cpp" />
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui.cpp" />
+    <ClCompile Include="..\..\ThirdParty\Imgui\ImGuizmo.cpp" />
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_impl_dx12.cpp" />
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\..\ThirdParty\Imgui\ImSequencer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\ThirdParty\Imgui\imconfig.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\ImCurveEdit.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\ImGradient.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\imgui.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\ImGuizmo.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\imgui_impl_dx12.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\imgui_impl_win32.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\imgui_internal.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\ImSequencer.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\imstb_textedit.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\imstb_truetype.h" />
+    <ClInclude Include="..\..\ThirdParty\Imgui\ImZoomSlider.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -152,25 +180,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\ThirdParty\Imgui\imconfig.h" />
-    <ClInclude Include="..\..\ThirdParty\Imgui\imgui.h" />
-    <ClInclude Include="..\..\ThirdParty\Imgui\imgui_impl_dx12.h" />
-    <ClInclude Include="..\..\ThirdParty\Imgui\imgui_impl_win32.h" />
-    <ClInclude Include="..\..\ThirdParty\Imgui\imgui_internal.h" />
-    <ClInclude Include="..\..\ThirdParty\Imgui\imstb_rectpack.h" />
-    <ClInclude Include="..\..\ThirdParty\Imgui\imstb_textedit.h" />
-    <ClInclude Include="..\..\ThirdParty\Imgui\imstb_truetype.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui.cpp" />
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_demo.cpp" />
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_draw.cpp" />
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_impl_dx12.cpp" />
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_impl_win32.cpp" />
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_tables.cpp" />
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_widgets.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

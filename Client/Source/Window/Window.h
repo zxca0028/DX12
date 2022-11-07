@@ -12,16 +12,24 @@ namespace CLIENT
 		u32 Height = 0;
 		const wchar_t* Title = nullptr;
 	};
-
+		
 	class Window final : public ISingleton
 	{
-		friend class ISingleton;
+		friend class GlobalInstance;
 		friend class Application;
 		friend class DirectX12;
 	private:
 		static WindowDesc mWindowDesc;
+	public:
+		virtual ~Window() = default;
 	private:
-		void Init();
+		virtual void Init() override;
+	public:
+		HWND GetHWND()
+		{
+			return mWindowDesc.hWnd;
+		}
+	private:
 		bool Update();
 	};
 }

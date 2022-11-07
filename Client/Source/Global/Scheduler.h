@@ -10,7 +10,10 @@ namespace CLIENT
 		enum
 		{
 			Graphics_BeginFrame = 1,
-			Graphics_EndFrame   = 2
+
+			ImGuiLayer = 5,
+
+			Graphics_EndFrame   = 100
 		};
 	};
 	enum class EScheduleState
@@ -38,7 +41,7 @@ namespace CLIENT
 	using SyncTaskFunction = std::function<EScheduleResult()>;
 	class Scheduler final : public ISingleton
 	{
-		friend class ISingleton;
+		friend class GlobalInstance;
 		friend class Application;
 	private:
 		class SyncTask
@@ -60,18 +63,19 @@ namespace CLIENT
 				return EScheduleType::SyncByFrame;
 			}
 		};
+	private:
+		u64 mIDOffset = 0;
+		Dictionary<u64, SharedPtr<SyncTask>> mSyncTaskPool;
+		SortedDictionary<i32, vector<WeakPtr<SyncTask>>> mSortedSyncTasks;
 	public:
-		~Scheduler()
+		virtual ~Scheduler()
 		{
 			mSortedSyncTasks.clear();
 			mSyncTaskPool.clear();
 		}
 	private:
-		u64 mIDOffset = 0;
-		Dictionary<u64, SharedPtr<SyncTask>> mSyncTaskPool;
-		SortedDictionary<i32, vector<WeakPtr<SyncTask>>> mSortedSyncTasks;
+		virtual void Init() override;
 	private:
-		void Init();
 		void Update();
 		void Update(SyncTaskByFrame* task);
 		u64 GetScheduleID();

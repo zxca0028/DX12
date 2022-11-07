@@ -9,7 +9,14 @@ namespace CLIENT
 
 	class DirectX12 final : public ISingleton
 	{
-		friend class ISingleton;
+		friend class GlobalInstance;
+	public:
+		virtual ~DirectX12()
+		{
+			Flush();
+		}
+	private:
+		virtual void Init() override;
 	public:
 		static IDXGIFactory4* GetDXGIFactory();
 		static ID3D12Device*  GetDevice();
@@ -27,8 +34,6 @@ namespace CLIENT
 		void End();
 		void Present();
 		void Flush();
-	private:
-		void Init();
 		void Resize();
 		void CreateResource();
 		void ScissorRect();

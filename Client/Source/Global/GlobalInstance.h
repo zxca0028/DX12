@@ -4,17 +4,39 @@
 
 namespace CLIENT
 {
-	class GlobalInstance;
 	class ISingleton abstract
 	{
-		friend class GlobalInstance;
 	public:
+		virtual ~ISingleton() = default;
+	protected:
+		virtual void Init() = 0;
+	};
+
+	class GlobalInstance final
+	{
+	private:
+		static UniquePtr<GlobalInstance> mInstance;
+	private:
+		stack<u64> mRegistOrder;
+		Dictionary<u64, SharedPtr<ISingleton>> mInstances;
+	public:
+		static void Init()
+		{
+			if (nullptr == mInstance)
+			{
+				mInstance = CreateUniquePtr<GlobalInstance>();
+			}
+		}
+		static void Release()
+		{
+			mInstance->ReleaseInstance();
+		}
 		template <class T, class ...Args>
 		static void Register(Args... args)
 		{
 			u64 hashCode = typeid(T).hash_code();
 
-			if (true == GlobalInstance::Instance()->IsValid(hashCode))
+			if (nullptr == GlobalInstance::Instance()->FindInstance(hashCode))
 			{
 				auto instance = CreateSharedPtr<T>(args...);
 
@@ -23,75 +45,50 @@ namespace CLIENT
 				instance->Init();
 			}
 		}
-	};
-
-	class GlobalInstance final
-	{
-		friend class ISingleton;
-	private:
-		Dictionary<u64, SharedPtr<ISingleton>> mInstances;
-		static UniquePtr<GlobalInstance> mInstance;
-	public:
-		static void Create()
-		{
-			if (nullptr == mInstance)
-			{
-				mInstance = CreateUniquePtr<GlobalInstance>();
-			}
-		}
-	public:
-		static void Release()
-		{
-			mInstance->ReleaseInstance();
-		}
-		template <class T>
-		static void Destroy()
-		{
-			mInstance->DestroyInstance(typeid(T).hash_code());
-		}
-	private:
-		void ReleaseInstance()
-		{
-			mInstances.clear();
-			mInstance.reset();
-		}
-		void DestroyInstance(u64 hashCode)
-		{
-			mInstances[hashCode].reset();
-		}
-	private:
-		void RegisterInstance(u64 hashCode, SharedPtr<ISingleton> instance)
-		{
-			mInstances.emplace(hashCode, instance);
-		}
-	public:
 		template <class T>
 		static SharedPtr<T> Instance()
 		{
-			return std::static_pointer_cast<T>(mInstance->Find(typeid(T).hash_code()));
+			return std::static_pointer_cast<T>(mInstance->FindInstance(typeid(T).hash_code()));
 		}
 		template <class T>
-		static bool IsVaild()
+		static bool IsValid()
 		{
-			return mInstance->Find(typeid(T).hash_code()) != nullptr;
+			return mInstance->FindInstance(typeid(T).hash_code()) != nullptr;
 		}
 	private:
 		static GlobalInstance* Instance()
 		{
 			return mInstance.get();
 		}
-		SharedPtr<ISingleton> Find(u64 hashCode)
+		SharedPtr<ISingleton> FindInstance(u64 hashCode)
 		{
-			return mInstances.find(hashCode)->second;
-		}
-		bool IsValid(u64 hashCode)
-		{
-			if (mInstances.find(hashCode) == mInstances.end() && nullptr != mInstance)
+			auto instance = mInstances.find(hashCode);
+
+			if (instance == mInstances.end())
 			{
-				return true;
+				return nullptr;
 			}
 
-			return false;
+			return instance->second;
+		}
+		void RegisterInstance(u64 hashCode, SharedPtr<ISingleton> instance)
+		{
+			mInstances.emplace(hashCode, instance);
+			mRegistOrder.push(hashCode);
+		}
+		void ReleaseInstance()
+		{
+			while (mRegistOrder.empty() == false)
+			{
+				auto order = mRegistOrder.top(); mRegistOrder.pop();
+
+				auto instance = FindInstance(order);
+
+				instance.reset();
+			}
+
+			mInstances.clear();
+			mInstance.reset();
 		}
 	};
 }

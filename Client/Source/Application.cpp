@@ -1,22 +1,23 @@
 #include "pch.h"
 #include "Application.h"
 #include "DirectX12/DirectX12.h"
+#include "System/SystemUI.h"
 
 namespace CLIENT
 {
 	bool Application::Create()
 	{
-		GlobalInstance::Create();
+		GlobalInstance::Init();
 		{
-			Log::Register<Log>();
-			Window::Register<Window>();
-			TimerManager::Register<TimerManager>();
-			Scheduler::Register<Scheduler>();
-			DirectX12::Register<DirectX12>();
-		}
+			GlobalInstance::Register<Log>();
+			GlobalInstance::Register<Window>();
+			GlobalInstance::Register<TimerManager>();
+			GlobalInstance::Register<Scheduler>();
+			GlobalInstance::Register<DirectX12>();
 
-		mWindow = GlobalInstance::Instance<Window>();
-		
+			GlobalInstance::Register<SystemUI>();
+		}	
+
 		return true;
 	}
 
@@ -24,15 +25,18 @@ namespace CLIENT
 	{
 		while (true)
 		{
-			if (false == mWindow->Update())
+			if (GlobalInstance::IsValid<Window>())
 			{
-				break;
+				if (false == GlobalInstance::Instance<Window>()->Update())
+				{
+					break;
+				}
 			}
-			if (GlobalInstance::IsVaild<TimerManager>())
+			if (GlobalInstance::IsValid<TimerManager>())
 			{
 				GlobalInstance::Instance<TimerManager>()->Update();
 			}
-			if (GlobalInstance::IsVaild<Scheduler>())
+			if (GlobalInstance::IsValid<Scheduler>())
 			{
 				GlobalInstance::Instance<Scheduler>()->Update();
 			}
@@ -41,12 +45,6 @@ namespace CLIENT
 
 	void Application::Destroy()
 	{
-		GlobalInstance::Instance<DirectX12>()->Flush();
-		GlobalInstance::Destroy<DirectX12>();
-		GlobalInstance::Destroy<Scheduler>();
-		GlobalInstance::Destroy<TimerManager>();
-		GlobalInstance::Destroy<Window>();
-		GlobalInstance::Destroy<Log>();
 		GlobalInstance::Release();
 	}
 }

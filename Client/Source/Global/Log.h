@@ -14,10 +14,10 @@ namespace CLIENT
 
 	class Log final : public ISingleton
 	{
-		friend class ISingleton;
+		friend class GlobalInstance;
 		friend class Application;
-	private:
-		void Init() 
+	public:
+		virtual void Init() override
 		{
 			LOG_INFO("Complete to Register Log");
 		}
@@ -29,10 +29,10 @@ namespace CLIENT
 		Log()
 		{
 			spdlog::set_pattern("%^[%T] %n: %v%$");
-			mLogger = spdlog::stdout_color_mt("App ");
+			mLogger = spdlog::stdout_color_mt("Application ");
 			mLogger->set_level(spdlog::level::trace);
 		}
-		~Log()
+		virtual ~Log()
 		{
 			mLogger.reset();
 			spdlog::shutdown();

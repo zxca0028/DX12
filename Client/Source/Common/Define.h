@@ -21,21 +21,23 @@
 #include "Math/Vector.h"
 #include "Math/Matrix.h"
 
-/* Leak Check */
+
+
+using namespace Microsoft::WRL;
+
+namespace CLIENT
+{
+	/* Leak Check */
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
 #ifndef DBG_NEW
 #define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
-#define new DBG_NEW
+#define New DBG_NEW
 #endif
 #endif
 
-using namespace Microsoft::WRL;
-
-namespace CLIENT
-{
 	using byte = char;
 	using i8   = char;
 	using i16  = short;

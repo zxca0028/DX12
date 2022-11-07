@@ -8,12 +8,15 @@ namespace CLIENT
 	class Timer;
 	class TimerManager final : public ISingleton
 	{
-		friend class ISingleton;
+		friend class GlobalInstance;
 		friend class Application;
 	private:
 		Dictionary<u64, SharedPtr<Timer>> mTimers;
+	public:
+		virtual ~TimerManager() = default;
 	private:
-		void Init();
+		virtual void Init() override;
+	private:
 		void Update();
 		void CreateTimer();
 		void DestroyTimer();
