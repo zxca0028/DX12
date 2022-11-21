@@ -244,21 +244,33 @@ namespace CLIENT
 		CreateResource();
 		ScissorRect();
 
-		GlobalInstance::Instance<Scheduler>()->ScheduleByFrame(0, 0, 0, SchedulePriority::Graphics_BeginFrame,
+		GlobalInstance::Instance<Scheduler>()->ScheduleByFrame
+		(
+			0,
+			0,
+			0,
+			SchedulePriority::Graphics_BeginFrame,
 			[&]() -> EScheduleResult
-		{
-			Begin();
+			{
+				Begin();
 
-			return EScheduleResult::Continue;
-		});
+				return EScheduleResult::Continue;
+			}
+		);
 
-		GlobalInstance::Instance<Scheduler>()->ScheduleByFrame(0, 0, 0, SchedulePriority::Graphics_EndFrame,
+		GlobalInstance::Instance<Scheduler>()->ScheduleByFrame
+		(
+			0,
+			0,
+			0,
+			SchedulePriority::Graphics_EndFrame,
 			[&]() -> EScheduleResult
-		{
-			End();
+			{
+				End();
 
-			return EScheduleResult::Continue;
-		});
+				return EScheduleResult::Continue;
+			}
+		);
 
 		LOG_INFO("Complete to Register DirectX12");
 	}

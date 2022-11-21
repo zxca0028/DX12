@@ -21,8 +21,6 @@
 #include "Math/Vector.h"
 #include "Math/Matrix.h"
 
-
-
 using namespace Microsoft::WRL;
 
 namespace CLIENT

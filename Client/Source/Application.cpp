@@ -15,6 +15,7 @@ namespace CLIENT
 			GlobalInstance::Register<Scheduler>();
 			GlobalInstance::Register<DirectX12>();
 
+			/* ImGui */
 			GlobalInstance::Register<SystemUI>();
 		}	
 

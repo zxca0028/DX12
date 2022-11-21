@@ -7,41 +7,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_draw.cpp">
+    <ClInclude Include="..\..\ThirdParty\Imgui\imconfig.h">
       <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_impl_dx12.cpp">
+    </ClInclude>
+    <ClInclude Include="..\..\ThirdParty\Imgui\ImCurveEdit.h">
       <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_impl_win32.cpp">
+    </ClInclude>
+    <ClInclude Include="..\..\ThirdParty\Imgui\ImGradient.h">
       <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_tables.cpp">
+    </ClInclude>
+    <ClInclude Include="..\..\ThirdParty\Imgui\imgui.h">
       <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_widgets.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ThirdParty\Imgui\ImGuizmo.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ThirdParty\Imgui\ImSequencer.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ThirdParty\Imgui\ImCurveEdit.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ThirdParty\Imgui\ImGradient.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_demo.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
+    </ClInclude>
     <ClInclude Include="..\..\ThirdParty\Imgui\imgui_impl_dx12.h">
       <Filter>Source</Filter>
     </ClInclude>
@@ -69,17 +46,40 @@
     <ClInclude Include="..\..\ThirdParty\Imgui\ImZoomSlider.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\ThirdParty\Imgui\imconfig.h">
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\ThirdParty\Imgui\ImCurveEdit.cpp">
       <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\ThirdParty\Imgui\ImCurveEdit.h">
+    </ClCompile>
+    <ClCompile Include="..\..\ThirdParty\Imgui\ImGradient.cpp">
       <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\ThirdParty\Imgui\ImGradient.h">
+    </ClCompile>
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui.cpp">
       <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\ThirdParty\Imgui\imgui.h">
+    </ClCompile>
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_demo.cpp">
       <Filter>Source</Filter>
-    </ClInclude>
+    </ClCompile>
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_draw.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_impl_dx12.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_impl_win32.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_tables.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ThirdParty\Imgui\imgui_widgets.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ThirdParty\Imgui\ImGuizmo.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ThirdParty\Imgui\ImSequencer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

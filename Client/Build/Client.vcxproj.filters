@@ -30,9 +30,6 @@
     <ClCompile Include="..\Source\Math\Vector.cpp">
       <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\Window\Window.cpp">
-      <Filter>Window</Filter>
-    </ClCompile>
     <ClCompile Include="..\Source\Global\GlobalInstance.cpp">
       <Filter>Global</Filter>
     </ClCompile>
@@ -66,6 +63,9 @@
     <ClCompile Include="..\Source\System\SystemUI.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Window\Window.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Application.h" />
@@ -77,9 +77,6 @@
     </ClInclude>
     <ClInclude Include="..\Source\Common\Define.h">
       <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\Window\Window.h">
-      <Filter>Window</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Global\GlobalInstance.h">
       <Filter>Global</Filter>
@@ -128,6 +125,9 @@
     </ClInclude>
     <ClInclude Include="..\Source\System\SystemUI.h">
       <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Window\Window.h">
+      <Filter>Window</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,12 +1,27 @@
 #include "pch.h"
 #include "Window.h"
 
+#include "Imgui/imgui.h"
+#include "Imgui/imgui_impl_win32.h"
+
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 namespace CLIENT
 {
 	WindowDesc Window::mWindowDesc = {};
+	vector<WindowCallBack> Window::mCallBack;
 
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
+		for (auto& callBack : Window::mCallBack)
+		{
+			LRESULT result = callBack(hWnd, msg, wParam, lParam);
+			if (result)
+			{
+				return result;
+			}
+		}
+
 		switch (msg)
 		{
 		case WM_KEYDOWN:
@@ -35,23 +50,26 @@ namespace CLIENT
 			wcex.hIcon         = LoadIcon(0, IDI_APPLICATION);
 			wcex.hCursor       = LoadCursor(nullptr, IDC_ARROW);
 			wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-			wcex.lpszMenuName  = 0;
+			wcex.lpszMenuName  = NULL;
 			wcex.lpszClassName = mWindowDesc.Title;
 			wcex.hIconSm       = LoadIcon(0, IDI_APPLICATION);
-			
+
 			RegisterClassExW(&wcex);
 		}
+
+		RECT rcWindow = { 0, 0, Width, Height };
+		AdjustWindowRect(&rcWindow, WS_OVERLAPPEDWINDOW, false);
 
 		mWindowDesc.hWnd = CreateWindowW
 		(
 			mWindowDesc.Title,
 			mWindowDesc.Title,
-			WS_OVERLAPPEDWINDOW, 
+			WS_OVERLAPPEDWINDOW,
 			CW_USEDEFAULT,
 			CW_USEDEFAULT,
-			mWindowDesc.Width,
-			mWindowDesc.Height,
-			nullptr, 
+			rcWindow.right - rcWindow.left,
+			rcWindow.bottom - rcWindow.top,
+			nullptr,
 			nullptr,
 			mWindowDesc.hInst,
 			nullptr
@@ -86,5 +104,10 @@ namespace CLIENT
 		}
 
 		return true;
+	}
+
+	void Window::AddCallBack(const WindowCallBack& callback)
+	{
+		mCallBack.push_back(callback);
 	}
 }

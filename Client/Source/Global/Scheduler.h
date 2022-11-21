@@ -11,7 +11,9 @@ namespace CLIENT
 		{
 			Graphics_BeginFrame = 1,
 
-			ImGuiLayer = 5,
+			ImGuiBegin			= 5,
+			ImGui				= 6,
+			ImGuiRender			= 7,
 
 			Graphics_EndFrame   = 100
 		};

@@ -9,10 +9,8 @@ namespace CLIENT
 		friend class GlobalInstance;
 		friend class Application;
 	public:
-		virtual ~SystemUI() = default;
+		virtual ~SystemUI();
 	private:
 		virtual void Init() override;
-	private:
-		EScheduleResult Update();
 	};
 }
